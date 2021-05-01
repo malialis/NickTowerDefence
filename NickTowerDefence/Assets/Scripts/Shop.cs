@@ -6,6 +6,12 @@ public class Shop : MonoBehaviour
 {
     private BuildManager buildManager;
 
+    [Header("Turret Prefabs")]
+    public TurretBlueprint standardTurret;
+    public TurretBlueprint standardWithShieldTurret;
+    public TurretBlueprint missleTurret;
+    public TurretBlueprint laserTurret;
+
 
 
     private void Start()
@@ -14,28 +20,28 @@ public class Shop : MonoBehaviour
     }
 
 
-    public void PurchaseStandardTurret()
+    public void SelectStandardTurret()
     {
         Debug.Log("Standard Turret Purchased");
-        buildManager.SetTurretToBuild(buildManager.standardTurretPrefab);
+        buildManager.SelectTurretToBuild(standardTurret);
     }
 
-    public void PurchaseStandardTurretWithShields()
+    public void SelectStandardTurretWithShield()
     {
         Debug.Log("Standard Turret With Shields Purchased");
-        buildManager.SetTurretToBuild(buildManager.standardTurretWithShieldPrefab);
+        buildManager.SelectTurretToBuild(standardWithShieldTurret);
     }
 
-    public void PurchaseMisselTurret()
+    public void SelectMissleLauncherTurret()
     {
         Debug.Log("Missel Turret Purchased");
-        buildManager.SetTurretToBuild(buildManager.misselTurretPrefab);
+        buildManager.SelectTurretToBuild(missleTurret);
     }
 
-    public void PurchaseLaserTurret()
+    public void SelectLaserTurret()
     {
         Debug.Log("Laser Turret Purchased");
-        buildManager.SetTurretToBuild(buildManager.laserLauncherPrefab);
+        buildManager.SelectTurretToBuild(laserTurret);
     }
 
 

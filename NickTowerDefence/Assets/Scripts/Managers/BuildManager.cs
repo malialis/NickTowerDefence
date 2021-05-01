@@ -6,12 +6,20 @@ public class BuildManager : MonoBehaviour
 {
     public static BuildManager instance;
 
-    private GameObject turretToBuild;
+    private TurretBlueprint turretToBuild;
 
     public GameObject standardTurretPrefab;
     public GameObject standardTurretWithShieldPrefab;
     public GameObject misselTurretPrefab;
     public GameObject laserLauncherPrefab;
+
+    public bool canBuild
+    {
+        get
+        {
+            return turretToBuild != null;
+        }
+    }
 
 
     // Start is called before the first frame update
@@ -26,16 +34,18 @@ public class BuildManager : MonoBehaviour
         instance = this;
     }
 
-    
-    public GameObject GetTurretToBuild()
-    {
-        return turretToBuild;
-    }
-
-    public void SetTurretToBuild(GameObject turret)
+   
+    public void SelectTurretToBuild(TurretBlueprint turret)
     {
         turretToBuild = turret;
     }
+        
 
+    public void BuildTurretOn(Node node)
+    {
+        GameObject turret = (GameObject)Instantiate(turretToBuild.prefab, node.GetBuildPosition(), Quaternion.identity);
+        node.turret = turret;
+    }
+   
 
 }

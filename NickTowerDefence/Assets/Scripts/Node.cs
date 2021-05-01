@@ -11,7 +11,7 @@ public class Node : MonoBehaviour
     [SerializeField] private Renderer rendr;
     [SerializeField] private Vector3 positionOffset;
 
-    private GameObject turret;
+    public GameObject turret;
     private BuildManager buildManager;
 
 
@@ -31,14 +31,14 @@ public class Node : MonoBehaviour
         if (EventSystem.current.IsPointerOverGameObject())
             return;
 
-        if (buildManager.GetTurretToBuild() == null)
+        if (!buildManager.canBuild)
             return;
 
         if (turret == null)
         {
             rendr.material.color = hoverColor;
         }
-        else if(turret != null)
+        if(turret != null)
         {
             rendr.material.color = occupiedColor;
         }
@@ -55,7 +55,7 @@ public class Node : MonoBehaviour
         if (EventSystem.current.IsPointerOverGameObject())
             return;
 
-        if (buildManager.GetTurretToBuild() == null)
+        if (!buildManager.canBuild)
             return;
 
         if(turret != null)
@@ -65,10 +65,13 @@ public class Node : MonoBehaviour
         }
 
         //else build a turret
-        GameObject turretToBuild = buildManager.GetTurretToBuild();
-        turret = (GameObject)Instantiate(turretToBuild, transform.position + positionOffset, transform.rotation);
+        buildManager.BuildTurretOn(this);
 
+    }
 
+    public Vector3 GetBuildPosition()
+    {
+        return transform.position + positionOffset;
     }
 
 

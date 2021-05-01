@@ -11198,6 +11198,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73cbf3152669f4139bff0a85bc4c6b51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  standardTurret:
+    prefab: {fileID: 3424437892728715529, guid: 03764d092a9994b658c1c73df6453f94, type: 3}
+    cost: 100
+  standardWithShieldTurret:
+    prefab: {fileID: 8873253620096827499, guid: 966e9d056095e4f438d5946ae6ccc600, type: 3}
+    cost: 150
+  missleTurret:
+    prefab: {fileID: 7025731903460479582, guid: c5262ff560eea4874a2999aea7b2d955, type: 3}
+    cost: 225
 --- !u!1001 &1348322115
 PrefabInstance:
   m_ObjectHideFlags: 0
