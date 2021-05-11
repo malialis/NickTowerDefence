@@ -10,6 +10,7 @@ public class Projectile : MonoBehaviour
 
     [SerializeField] private float speed = 70f;
     [SerializeField] private float impactRadius = 0f;
+    [SerializeField] private int damage = 50;
 
 
     // Update is called once per frame
@@ -63,7 +64,12 @@ public class Projectile : MonoBehaviour
 
     private void Damage(Transform enemy)
     {
-        Destroy(enemy.gameObject);
+        Enemy e = enemy.GetComponent<Enemy>();
+
+        if(e != null)
+        {
+            e.TakeDamage(damage);
+        }        
     }
 
     private void Explode()
@@ -83,5 +89,6 @@ public class Projectile : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, impactRadius);
     }
+
 
 }

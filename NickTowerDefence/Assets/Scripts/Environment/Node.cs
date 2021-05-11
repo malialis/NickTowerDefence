@@ -8,6 +8,7 @@ public class Node : MonoBehaviour
     [SerializeField] private Color hoverColor;
     [SerializeField] private Color occupiedColor;
     [SerializeField] private Color originalColor;
+    [SerializeField] private Color notEnoughMoneyColor;
     [SerializeField] private Renderer rendr;
     [SerializeField] private Vector3 positionOffset;
 
@@ -33,15 +34,19 @@ public class Node : MonoBehaviour
 
         if (!buildManager.canBuild)
             return;
-
-        if (turret == null)
+        if(turret == null && buildManager.hasMoney)
         {
             rendr.material.color = hoverColor;
         }
-        if(turret != null)
+        else
+        {
+            rendr.material.color = notEnoughMoneyColor;
+        }
+
+        if (turret != null)
         {
             rendr.material.color = occupiedColor;
-        }
+        }    
         
     }
 

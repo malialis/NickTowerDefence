@@ -6,6 +6,9 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField]private float speed = 10f;
+    public int health = 100;
+    public int value = 75;
+    public GameObject deathFX;
 
     private Transform target;
     private int wavepointIndex = 0;
@@ -33,11 +36,35 @@ public class Enemy : MonoBehaviour
     {
         if(wavepointIndex >= Waypoints.waypoints.Length - 1)
         {
-            Destroy(gameObject);
-            Debug.Log("Goal is reached");
+            EndPathGoal();
             return;
         }
         wavepointIndex++;
         target = Waypoints.waypoints[wavepointIndex];
     }
+
+    private void EndPathGoal()
+    {
+        PlayerStats.Lives--;
+        Destroy(gameObject);
+        Debug.Log("Goal is reached");
+    }
+
+    public void TakeDamage(int damageToTake)
+    {
+        health -= damageToTake;
+        if(health <= 0)
+        {
+            Die();
+        }
+    }
+
+    private void Die()
+    {
+        GameObject effect = (GameObject)Instantiate(deathFX, transform.position, Quaternion.identity);
+        PlayerStats.Money += value;
+        Destroy(gameObject);
+        Destroy(effect, 3f);
+    }
+
 }

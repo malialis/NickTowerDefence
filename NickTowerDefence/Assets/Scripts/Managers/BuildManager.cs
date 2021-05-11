@@ -13,6 +13,8 @@ public class BuildManager : MonoBehaviour
     public GameObject misselTurretPrefab;
     public GameObject laserLauncherPrefab;
 
+    public GameObject buildFX;
+
     public bool canBuild
     {
         get
@@ -21,6 +23,13 @@ public class BuildManager : MonoBehaviour
         }
     }
 
+    public bool hasMoney
+    {
+        get
+        {
+            return PlayerStats.Money >= turretToBuild.cost;
+        }
+    }
 
     // Start is called before the first frame update
     void Awake()
@@ -43,9 +52,22 @@ public class BuildManager : MonoBehaviour
 
     public void BuildTurretOn(Node node)
     {
+        if(PlayerStats.Money < turretToBuild.cost)
+        {
+            Debug.Log("Not enough money");
+            return;
+        }
+
+        PlayerStats.Money -= turretToBuild.cost;
+
         GameObject turret = (GameObject)Instantiate(turretToBuild.prefab, node.GetBuildPosition(), Quaternion.identity);
         node.turret = turret;
+        GameObject buildSFX = (GameObject)Instantiate(buildFX, node.GetBuildPosition(), Quaternion.identity);
+        Destroy(buildSFX, 3f);
+
+        Debug.Log("Turret is built! Money left is ..." + PlayerStats.Money);
     }
-   
+
+
 
 }

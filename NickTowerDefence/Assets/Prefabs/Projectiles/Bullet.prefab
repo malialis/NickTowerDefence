@@ -96,3 +96,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   impactFX: {fileID: 1089499818959625366, guid: 29ce2d087fe70412b890b013e2efec45, type: 3}
   speed: 70
+  impactRadius: 1
+  damage: 35

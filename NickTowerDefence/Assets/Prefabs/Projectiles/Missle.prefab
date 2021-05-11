@@ -46,7 +46,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   impactFX: {fileID: 8570166508002530755, guid: b5c0e95efc8d34aeba892fe9f1c1b680, type: 3}
   speed: 30
-  impactRadius: 8
+  impactRadius: 9
+  damage: 75
 --- !u!1 &8430281559338947699
 GameObject:
   m_ObjectHideFlags: 0
